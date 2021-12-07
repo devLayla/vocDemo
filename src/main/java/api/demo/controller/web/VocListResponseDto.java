@@ -3,6 +3,8 @@ package api.demo.controller.web;
 import api.demo.domain.*;
 import lombok.Getter;
 
+import java.util.List;
+
 @Getter
 public class VocListResponseDto {
 
@@ -16,20 +18,19 @@ public class VocListResponseDto {
 
     private String penaltyContent;
 
-    private CheckDriver checkDriver;
+    private boolean checkDriver;
 
     private Objection objection;
 
-    private Compensate compensate;
+    private List<Compensate> compensateList;
 
     public VocListResponseDto(VOC voc){
-        this.id = voc.getId();
-        this.vocStatus = voc.getVocStatus();
-        this.attributable = voc.getAttributable();
-        this.content = voc.getContent();
-        this.penaltyContent = voc.getPenaltyContent();
-        this.checkDriver = voc.getCheckDriver();
-        this.objection = voc.getObjection();
-        this.compensate = voc.getCompensate();
+        id = voc.getId();
+        vocStatus = voc.getVocStatus();
+        attributable = voc.getAttributable();
+        content = voc.getContent();
+        checkDriver = voc.getCheckDriver();
+        objection = voc.getObjection();
+        compensateList = voc.getCompensateList();
     }
 }

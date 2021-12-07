@@ -19,7 +19,7 @@ public class CompensateController {
 
     @PostMapping("/api/compensate/save")
     public Long save(CompensateSaveDto compensateSaveDto){
-        return compensateService.saveCompensation(compensateSaveDto);
+        return compensateService.saveCompensate(compensateSaveDto);
     }
 
     @GetMapping("/api/compensate")

@@ -1,4 +1,4 @@
-package api.demo.repository;
+package api.demo.domain;
 
 import api.demo.domain.Compensate;
 import org.springframework.data.jpa.repository.JpaRepository;

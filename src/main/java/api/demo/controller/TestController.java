@@ -56,9 +56,9 @@ public class TestController {
                 .price(20000L)
                 .build();
 
-        compensateService.saveCompensation(compensateSaveDto1);
-        compensateService.saveCompensation(compensateSaveDto2);
-        compensateService.saveCompensation(compensateSaveDto3);
+        compensateService.saveCompensate(compensateSaveDto1);
+        compensateService.saveCompensate(compensateSaveDto2);
+        compensateService.saveCompensate(compensateSaveDto3);
     }
 
 

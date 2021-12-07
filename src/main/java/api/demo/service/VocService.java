@@ -4,7 +4,7 @@ import api.demo.controller.web.VocResponseDto;
 import api.demo.controller.web.VocSaveDto;
 import api.demo.controller.web.VocListResponseDto;
 import api.demo.domain.VOC;
-import api.demo.repository.VocRepository;
+import api.demo.domain.VocRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

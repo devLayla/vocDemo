@@ -23,7 +23,7 @@ public class Compensate {
     private Long price;
 
     @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "voc_id")
     private VOC voc;
 
@@ -35,6 +35,16 @@ public class Compensate {
         this.content = content;
         this.price = price;
         this.voc = voc;
+    }
+
+    public Penalty createPenalty(){
+        Penalty penalty = Penalty.builder()
+                .price(price)
+                .content(content)
+                .compensate(this)
+                .build();
+        this.penalty = penalty;
+        return penalty;
     }
 
 }
