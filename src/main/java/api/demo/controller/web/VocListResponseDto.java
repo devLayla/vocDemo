@@ -4,6 +4,7 @@ import api.demo.domain.*;
 import lombok.Getter;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 public class VocListResponseDto {
@@ -20,9 +21,9 @@ public class VocListResponseDto {
 
     private Objection objection;
 
-    private List<Compensate> compensateList;
-
     private int totalPrice;
+
+    private List<CompensateResponseDto> compensateList;
 
     public VocListResponseDto(VOC voc){
         id = voc.getId();
@@ -32,6 +33,8 @@ public class VocListResponseDto {
         checkDriver = voc.getCheckDriver();
         objection = voc.getObjection();
         totalPrice = voc.getTotalPrice();
-        compensateList = voc.getCompensateList();
+        compensateList = voc.getCompensateList().stream()
+                .map(CompensateResponseDto::new)
+                .collect(Collectors.toList());
     }
 }

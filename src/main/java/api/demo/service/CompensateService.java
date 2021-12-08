@@ -24,9 +24,7 @@ public class CompensateService {
 
     @Transactional
     public Long saveCompensate(CompensateSaveDto saveDto){
-        VOC getVoc = vocRepository.findById(saveDto.getVocId())
-                .orElseThrow(() -> new IllegalArgumentException("해당 voc가 없습니다 = ID : " + saveDto.getVocId()));
-        Compensate save = compensateRepository.save(saveDto.toEntity(getVoc));
+        Compensate save = compensateRepository.save(saveDto.toEntity());
 
         return save.getId();
     }

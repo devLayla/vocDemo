@@ -1,8 +1,10 @@
 package api.demo.service;
 
+import api.demo.controller.web.CompensateSaveDto;
 import api.demo.controller.web.VocResponseDto;
 import api.demo.controller.web.VocSaveDto;
 import api.demo.controller.web.VocListResponseDto;
+import api.demo.domain.Attributable;
 import api.demo.domain.VOC;
 import api.demo.domain.VocRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,10 +20,20 @@ import java.util.stream.Collectors;
 public class VocService {
 
     private final VocRepository vocRepository;
+    private final CompensateService compensateService;
 
     @Transactional
     public Long saveVOC(VocSaveDto createVOCDto){
+        if(createVOCDto.getAttributable() == Attributable.CARRIER){
+            CompensateSaveDto saveDto = CompensateSaveDto.builder()
+                    .price(createVOCDto.getPrice())
+                    .content(createVOCDto.getContent())
+                    .voc(createVOCDto.toEntity())
+                    .build();
+            compensateService.saveCompensate(saveDto);
+        }
         VOC save = vocRepository.save(createVOCDto.toEntity());
+
         return save.getId();
     }
 

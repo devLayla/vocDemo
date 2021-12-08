@@ -10,21 +10,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CompensateSaveDto {
 
-    private Long vocId;
     private String content;
     private Long price;
+    private VOC voc;
 
-    public void setVocId(Long vocId){
-        this.vocId = vocId;
-    }
 
     @Builder
-    public CompensateSaveDto(String content, Long price){
+    public CompensateSaveDto(VOC voc, String content, Long price){
+        this.voc = voc;
         this.content = content;
         this.price = price;
     }
 
-    public Compensate toEntity(VOC voc){
+    public Compensate toEntity(){
         return Compensate.builder()
                 .voc(voc)
                 .content(content)
