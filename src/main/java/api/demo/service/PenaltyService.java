@@ -23,13 +23,15 @@ public class PenaltyService {
 
     @Transactional
     public Long save(PenaltySaveDto penaltySaveDto){
-        Compensate compensate = compensateRepository.findById(penaltySaveDto.getCompensateId()).get();
+        Compensate compensate = compensateRepository.findById(penaltySaveDto.getCompensateId())
+                .orElseThrow(() -> new IllegalArgumentException("해당 Compensate가 없습니다 = ID : " + penaltySaveDto.getCompensateId()));
         Penalty save = penaltyRepository.save(penaltySaveDto.toEntity(compensate));
         return save.getId();
     }
 
     public PenaltyResponseDto findById(Long id){
-        Penalty findById = penaltyRepository.findById(id).get();
+        Penalty findById = penaltyRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 voc가 없습니다 = ID : " + id));
         return new PenaltyResponseDto(findById);
     }
 

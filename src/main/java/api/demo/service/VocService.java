@@ -26,7 +26,8 @@ public class VocService {
     }
 
     public VocResponseDto findById(Long id){
-        VOC voc = vocRepository.findById(id).get();
+        VOC voc = vocRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 voc가 없습니다 = ID : " + id));
         return new VocResponseDto(voc);
     }
 

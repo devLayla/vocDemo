@@ -24,14 +24,16 @@ public class CompensateService {
 
     @Transactional
     public Long saveCompensate(CompensateSaveDto saveDto){
-        VOC getVoc = vocRepository.findById(saveDto.getVocId()).get();
+        VOC getVoc = vocRepository.findById(saveDto.getVocId())
+                .orElseThrow(() -> new IllegalArgumentException("해당 voc가 없습니다 = ID : " + saveDto.getVocId()));
         Compensate save = compensateRepository.save(saveDto.toEntity(getVoc));
 
         return save.getId();
     }
 
     public CompensateResponseDto findById(Long id){
-        Compensate findOne = compensateRepository.findById(id).get();
+        Compensate findOne = compensateRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 voc가 없습니다 = ID : " + id));
 
         return new CompensateResponseDto(findOne);
 
