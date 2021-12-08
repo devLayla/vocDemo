@@ -14,10 +14,6 @@ public class VocSaveDto {
 
     private String content;
 
-    private String compensateContent;
-
-    private Long price;
-
     @Builder
     public VocSaveDto(Attributable attributable, String content){
         this.attributable = attributable;

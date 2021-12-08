@@ -12,17 +12,19 @@ public class CompensateSaveDto {
 
     private String content;
     private Long price;
-    private VOC voc;
+    private Long vocId;
 
+    public void setVocId(Long vocId){
+        this.vocId = vocId;
+    }
 
     @Builder
-    public CompensateSaveDto(VOC voc, String content, Long price){
-        this.voc = voc;
+    public CompensateSaveDto(String content, Long price){
         this.content = content;
         this.price = price;
     }
 
-    public Compensate toEntity(){
+    public Compensate toEntity(VOC voc){
         return Compensate.builder()
                 .voc(voc)
                 .content(content)

@@ -16,6 +16,7 @@ public class CompensateController {
 
     @PostMapping("/api/voc/{vocId}/compensate")
     public Long save(@PathVariable("vocId") Long vocId, @RequestBody CompensateSaveDto compensateSaveDto){
+        compensateSaveDto.setVocId(vocId);
         return compensateService.saveCompensate(compensateSaveDto);
     }
 
