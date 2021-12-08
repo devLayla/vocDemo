@@ -4,10 +4,7 @@ import api.demo.controller.web.CompensateResponseDto;
 import api.demo.controller.web.CompensateSaveDto;
 import api.demo.service.CompensateService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,8 +14,9 @@ public class CompensateController {
 
     private final CompensateService compensateService;
 
-    @PostMapping("/api/compensate/save")
-    public Long save(CompensateSaveDto compensateSaveDto){
+    @PostMapping("/api/voc/{vocId}/compensate")
+    public Long save(@PathVariable("vocId") Long vocId, @RequestBody CompensateSaveDto compensateSaveDto){
+        compensateSaveDto.setVocId(vocId);
         return compensateService.saveCompensate(compensateSaveDto);
     }
 

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     private final VocService vocService;
-    private final CompensateService compensateService;
 
     @PostMapping("/")
     public void home(){
@@ -37,28 +36,10 @@ public class TestController {
                 .content("배송시각오류")
                 .build();
 
-        vocService.saveVOC(vocSaveDto1);
-        vocService.saveVOC(vocSaveDto2);
-        vocService.saveVOC(vocSaveDto3);
+        Long save1 = vocService.saveVOC(vocSaveDto1);
+        Long save2 = vocService.saveVOC(vocSaveDto2);
+        Long save3 = vocService.saveVOC(vocSaveDto3);
 
-        CompensateSaveDto compensateSaveDto1 = CompensateSaveDto.builder()
-                .content("배송오류")
-                .price(10000L)
-                .build();
-
-        CompensateSaveDto compensateSaveDto2 = CompensateSaveDto.builder()
-                .content("상품파손")
-                .price(30000L)
-                .build();
-
-        CompensateSaveDto compensateSaveDto3 = CompensateSaveDto.builder()
-                .content("배송오류")
-                .price(20000L)
-                .build();
-
-        compensateService.saveCompensate(compensateSaveDto1);
-        compensateService.saveCompensate(compensateSaveDto2);
-        compensateService.saveCompensate(compensateSaveDto3);
     }
 
 

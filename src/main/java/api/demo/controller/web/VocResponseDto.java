@@ -14,23 +14,14 @@ public class VocResponseDto {
 
     private String content;
 
-    private String penaltyContent;
-
-    private CheckDriver checkDriver;
-
     private Objection objection;
-
-    private Compensate compensate;
 
     public VocResponseDto(VOC voc){
         this.id = voc.getId();
         this.vocStatus = voc.getVocStatus();
         this.attributable = voc.getAttributable();
         this.content = voc.getContent();
-        this.penaltyContent = voc.getPenaltyContent();
-        this.checkDriver = voc.getCheckDriver();
         this.objection = voc.getObjection();
-        this.compensate = voc.getCompensate();
     }
 
 

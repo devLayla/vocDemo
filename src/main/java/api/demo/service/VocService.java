@@ -21,8 +21,8 @@ public class VocService {
 
     @Transactional
     public Long saveVOC(VocSaveDto createVOCDto){
-        VOC getID = vocRepository.save(createVOCDto.toEntity());
-        return getID.getId();
+        VOC save = vocRepository.save(createVOCDto.toEntity());
+        return save.getId();
     }
 
     public VocResponseDto findById(Long id){

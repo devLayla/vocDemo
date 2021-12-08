@@ -16,13 +16,13 @@ public class VocListResponseDto {
 
     private String content;
 
-    private String penaltyContent;
-
     private boolean checkDriver;
 
     private Objection objection;
 
     private List<Compensate> compensateList;
+
+    private int totalPrice;
 
     public VocListResponseDto(VOC voc){
         id = voc.getId();
@@ -31,6 +31,7 @@ public class VocListResponseDto {
         content = voc.getContent();
         checkDriver = voc.getCheckDriver();
         objection = voc.getObjection();
+        totalPrice = voc.getTotalPrice();
         compensateList = voc.getCompensateList();
     }
 }
