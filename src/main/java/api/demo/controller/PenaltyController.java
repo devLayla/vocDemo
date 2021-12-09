@@ -19,11 +19,12 @@ public class PenaltyController {
 
     @PostMapping("/api/compensate/{compensateId}/penalty")
     public Long save(@PathVariable("compensateId") Long id, PenaltySaveDto penaltySaveDto){
+        penaltySaveDto.setCompensateId(id);
         return penaltyService.save(penaltySaveDto);
     }
 
-    @GetMapping("/api/compensate/{compensateId}/penalty")
-    public List<PenaltyResponseDto> findAll(@PathVariable("compensateId")Long id){
+    @GetMapping("/api/penalty")
+    public List<PenaltyResponseDto> findAll(){
         return penaltyService.findAll();
     }
 

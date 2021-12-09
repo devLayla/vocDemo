@@ -69,7 +69,7 @@ public class VOC {
         return this.vocStatus;
     }
 
-    public Compensate createCompensation(String content, Long price){
+    public Compensate createCompensate(String content, Long price){
         Compensate compensate = Compensate.builder()
                 .content(content)
                 .price(price)

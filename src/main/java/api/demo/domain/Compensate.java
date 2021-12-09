@@ -10,12 +10,12 @@ import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "compensation")
+@Table(name = "compensate")
 @Entity
 public class Compensate {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "compensation_id")
+    @Column(name = "compensate_id")
     private Long id;
 
     private String content;

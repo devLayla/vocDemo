@@ -25,13 +25,24 @@ public class PenaltyService {
     public Long save(PenaltySaveDto penaltySaveDto){
         Compensate compensate = compensateRepository.findById(penaltySaveDto.getCompensateId())
                 .orElseThrow(() -> new IllegalArgumentException("해당 Compensate가 없습니다 = ID : " + penaltySaveDto.getCompensateId()));
+
+        validateDuplicatePenalty(penaltySaveDto.getCompensateId());
+
         Penalty save = penaltyRepository.save(penaltySaveDto.toEntity(compensate));
         return save.getId();
     }
 
+    private void validateDuplicatePenalty(Long compensateId){
+        Penalty byCompensateId = penaltyRepository.findByCompensateId(compensateId);
+
+        if(byCompensateId != null){
+            throw new IllegalStateException("이미 발급된 패널티 입니다");
+        }
+    }
+
     public PenaltyResponseDto findById(Long id){
         Penalty findById = penaltyRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 voc가 없습니다 = ID : " + id));
+                .orElseThrow(() -> new IllegalArgumentException("해당 패널티정보가 없습니다 = ID : " + id));
         return new PenaltyResponseDto(findById);
     }
 

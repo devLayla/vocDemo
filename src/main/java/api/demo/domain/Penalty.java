@@ -26,7 +26,7 @@ public class Penalty {
 
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "compensation_id")
+    @JoinColumn(name = "compensate_id")
     private Compensate compensate;
 
     @Builder
