@@ -22,7 +22,7 @@ public class VocApiController {
 
     @GetMapping("/api/voc")
     public List<VocListResponseDto> findAll(){
-        return vocService.findAllByDto();
+        return vocService.findAll();
     }
 
     @GetMapping("/api/voc/{id}")
