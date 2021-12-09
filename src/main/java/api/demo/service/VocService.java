@@ -1,10 +1,8 @@
 package api.demo.service;
 
-import api.demo.controller.web.CompensateSaveDto;
-import api.demo.controller.web.VocResponseDto;
-import api.demo.controller.web.VocSaveDto;
-import api.demo.controller.web.VocListResponseDto;
+import api.demo.controller.web.*;
 import api.demo.domain.Attributable;
+import api.demo.domain.Compensate;
 import api.demo.domain.VOC;
 import api.demo.domain.VocRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -20,9 +19,13 @@ import java.util.stream.Collectors;
 public class VocService {
 
     private final VocRepository vocRepository;
+    private final CompensateService compensateService;
 
     @Transactional
     public Long saveVOC(VocSaveDto createVOCDto){
+        if(createVOCDto.getAttributable() == null){
+            throw new IllegalArgumentException("귀책이 설정되지 않았습니다. 귀책정보를 입력해주세요.");
+        }
         VOC save = vocRepository.save(createVOCDto.toEntity());
         return save.getId();
     }
@@ -37,6 +40,22 @@ public class VocService {
         return vocRepository.findAll().stream()
                 .map(VocListResponseDto::new)
                 .collect(Collectors.toList());
+    }
+
+    public List<VocListResponseDto> findAllByDto(){
+        List<VocListResponseDto> findVoc = vocRepository.findAll().stream()
+                .map(VocListResponseDto::new)
+                .collect(Collectors.toList());
+
+        List<Long> resultIds = findVoc.stream()
+                            .map(VocListResponseDto::getId)
+                            .collect(Collectors.toList());
+
+        Map<Long, List<CompensateListResponseDto>> compensateMap = compensateService.findAllWithVoc(resultIds);
+
+        findVoc.forEach(v -> v.setCompensate(compensateMap.get(v.getId())));
+
+        return findVoc;
     }
 
 }

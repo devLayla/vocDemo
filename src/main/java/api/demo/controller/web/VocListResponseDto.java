@@ -23,7 +23,7 @@ public class VocListResponseDto {
 
     private int totalPrice;
 
-    private List<CompensateResponseDto> compensateList;
+    private List<CompensateListResponseDto> compensateList;
 
     public VocListResponseDto(VOC voc){
         id = voc.getId();
@@ -34,7 +34,21 @@ public class VocListResponseDto {
         objection = voc.getObjection();
         totalPrice = voc.getTotalPrice();
         compensateList = voc.getCompensateList().stream()
-                .map(CompensateResponseDto::new)
+                .map(CompensateListResponseDto::new)
                 .collect(Collectors.toList());
+    }
+
+    public VocListResponseDto(Long id, VocStatus vocStatus, Attributable attributable, String content, boolean checkDriver, Objection objection) {
+        this.id = id;
+        this.vocStatus = vocStatus;
+        this.attributable = attributable;
+        this.content = content;
+        this.checkDriver = checkDriver;
+        this.objection = objection;
+    }
+
+    public List<CompensateListResponseDto> setCompensate(List<CompensateListResponseDto> list){
+        this.compensateList = list;
+        return list;
     }
 }

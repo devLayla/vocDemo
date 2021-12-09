@@ -1,5 +1,6 @@
 package api.demo.service;
 
+import api.demo.controller.web.CompensateListResponseDto;
 import api.demo.controller.web.CompensateResponseDto;
 import api.demo.controller.web.CompensateSaveDto;
 import api.demo.controller.web.VocResponseDto;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -44,5 +46,14 @@ public class CompensateService {
                 .collect(Collectors.toList());
     }
 
+    public Map<Long, List<CompensateListResponseDto>> findAllWithVoc(List<Long> vocIds){
+        List<CompensateListResponseDto> collect = compensateRepository.findAllWithVoc(vocIds).stream()
+                .map(CompensateListResponseDto::new)
+                .collect(Collectors.toList());
+
+        return collect.stream()
+                .collect(Collectors.groupingBy(CompensateListResponseDto::getId));
+
+    }
 
 }

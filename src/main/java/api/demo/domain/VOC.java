@@ -79,6 +79,10 @@ public class VOC {
         return compensate;
     }
 
+    public void addCompensate(List<Compensate> compensateList){
+        this.compensateList = compensateList;
+    }
+
     public int getTotalPrice(){
         int totalPrice = 0;
         for (Compensate compensate: compensateList){

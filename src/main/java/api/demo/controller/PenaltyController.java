@@ -4,10 +4,7 @@ import api.demo.controller.web.PenaltyResponseDto;
 import api.demo.controller.web.PenaltySaveDto;
 import api.demo.service.PenaltyService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,7 +15,7 @@ public class PenaltyController {
     private final PenaltyService penaltyService;
 
     @PostMapping("/api/compensate/{compensateId}/penalty")
-    public Long save(@PathVariable("compensateId") Long id, PenaltySaveDto penaltySaveDto){
+    public Long save(@PathVariable("compensateId") Long id, @RequestBody PenaltySaveDto penaltySaveDto){
         penaltySaveDto.setCompensateId(id);
         return penaltyService.save(penaltySaveDto);
     }
