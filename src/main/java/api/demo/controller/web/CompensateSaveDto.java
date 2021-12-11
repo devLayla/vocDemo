@@ -27,4 +27,11 @@ public class CompensateSaveDto {
                 .build();
     }
 
+    public Compensate toEntity(){
+        return Compensate.builder()
+                .content(content)
+                .price(price)
+                .build();
+    }
+
 }

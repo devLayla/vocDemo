@@ -53,6 +53,7 @@ public class PenaltyService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     public Long checkSign(Long id){
         Penalty findOne = penaltyRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 패널티 정보가 없습니다 = ID : " + id));
