@@ -47,4 +47,7 @@ public class Compensate {
         return penalty;
     }
 
+    public Boolean getPenaltyIssued(){
+        return penalty.getIsSign();
+    }
 }
