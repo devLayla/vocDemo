@@ -29,11 +29,21 @@ public class Penalty {
     @JoinColumn(name = "compensate_id")
     private Compensate compensate;
 
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="voc_id")
+    private VOC voc;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
     @Builder
-    public Penalty(Long price, String content, Compensate compensate){
+    public Penalty(Long price, String content, Compensate compensate, Member member){
         this.price = price;
         this.content = content;
         this.compensate = compensate;
+        this.member = member;
     }
 
     public Boolean signCheck(){

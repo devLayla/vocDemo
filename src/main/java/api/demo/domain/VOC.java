@@ -35,6 +35,9 @@ public class VOC {
     @OneToMany(mappedBy = "voc", cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Compensate> compensateList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "voc", cascade =  {CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Penalty> penaltyList = new ArrayList<>();
+
     @Builder
     public VOC(Attributable attributable, String content){
         this.attributable = attributable;
