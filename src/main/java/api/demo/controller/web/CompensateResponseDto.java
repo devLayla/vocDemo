@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 public class CompensateResponseDto {
-
+    //단일검색
     private Long id;
 
     private String content;
@@ -15,11 +15,10 @@ public class CompensateResponseDto {
     private PenaltyResponseDto penalty;
 
     public CompensateResponseDto(Compensate compensate){
-        this.id = compensate.getId();
-        this.content = compensate.getContent();
-        this.price = compensate.getPrice();
-       // this.penalty = new PenaltyResponseDto(compensate.getPenalty());
+        id = compensate.getId();
+        content = compensate.getContent();
+        price = compensate.getPrice();
+        penalty = new PenaltyResponseDto(compensate.getPenalty());
     }
-
 
 }

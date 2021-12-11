@@ -20,12 +20,6 @@ public class PenaltySaveDto {
         this.compensateId = compensateId;
     }
 
-    @Builder
-    public PenaltySaveDto(Long price, String content){
-        this.price = price;
-        this.content = content;
-    }
-
     public Penalty toEntity(Compensate compensate){
         return Penalty.builder()
                 .price(price)

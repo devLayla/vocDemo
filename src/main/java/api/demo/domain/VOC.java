@@ -20,17 +20,16 @@ public class VOC {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private VocStatus vocStatus; //현재 상태
-
-    @Enumerated(EnumType.STRING)
     private Attributable attributable; //귀책 당사자
-
-    private Boolean checkDriver = false; //기사 확인여부
 
     @Enumerated(EnumType.STRING)
     private Objection objection = Objection.WAITING; //이의제기 여부
 
-    private String content; //voc 문의내용
+    private String content; //귀책내용
+
+    private Boolean isClaim; //클레임 여부
+
+    private Boolean isCompensate; //배상요청 여부
 
     @OneToMany(mappedBy = "voc", cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Compensate> compensateList = new ArrayList<>();
@@ -39,51 +38,26 @@ public class VOC {
     private List<Penalty> penaltyList = new ArrayList<>();
 
     @Builder
-    public VOC(Attributable attributable, String content){
+    public VOC(Attributable attributable, String content, Boolean isClaim, Boolean isCompensate){
         this.attributable = attributable;
         this.content = content;
-        vocStatus = VocStatus.Question;
+        this.isClaim = isClaim;
+        this.isCompensate = isCompensate;
     }
 
-    public boolean getDriverCheck(){
-        int check = 0;
-        for(Compensate compensate : compensateList)
-        {
-            if(!compensate.getPenalty().getIsSign()){
-                check++;
-            }
-        }
-        if(check == 0)
-            return true;
-
-        return false;
-    }
-
-    public Objection objectionYes(){
-        return objection = Objection.YES;
-    }
-
-    public Objection objectionNo(){
-        return objection = Objection.NONE;
-    }
-
-    public VocStatus changeStatus(VocStatus vocStatus){
-        this.vocStatus = vocStatus;
-        return this.vocStatus;
-    }
-
-    public Compensate createCompensate(String content, Long price){
-        Compensate compensate = Compensate.builder()
-                .content(content)
-                .price(price)
-                .voc(this)
-                .build();
+   public void addCompensate(Compensate compensate){
         compensateList.add(compensate);
-        return compensate;
-    }
+        compensate.setVoc(this);
+   }
 
-    public void addCompensate(List<Compensate> compensateList){
-        this.compensateList = compensateList;
+    public Boolean getDriverSign(){
+        int totalSign = 0;
+
+        for(Penalty penalty : penaltyList){
+            if(penalty.getIsSign())
+                totalSign++;
+        }
+        return totalSign == penaltyList.size();
     }
 
     public int getTotalPrice(){

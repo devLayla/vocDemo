@@ -34,20 +34,15 @@ public class Penalty {
     @JoinColumn(name="voc_id")
     private VOC voc;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    private Member member;
-
     @Builder
-    public Penalty(Long price, String content, Compensate compensate, Member member){
+    public Penalty(Long price, String content, Compensate compensate){
         this.price = price;
         this.content = content;
         this.compensate = compensate;
-        this.member = member;
     }
 
-    public Boolean signCheck(){
-        return isSign = true;
+    public void signCheck(){
+        isSign = true;
     }
 
 }

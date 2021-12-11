@@ -25,5 +25,10 @@ public class PenaltyController {
         return penaltyService.findAll();
     }
 
+    @PutMapping("/api/penalty/{penaltyId}")
+    public Long checkSign(@PathVariable("penaltyId")Long id){
+        return penaltyService.checkSign(id);
+    }
+
 
 }

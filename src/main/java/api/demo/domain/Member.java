@@ -1,6 +1,7 @@
 package api.demo.domain;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -23,5 +24,12 @@ public class Member {
     private String name;
 
     private Attributable attributable;
+
+    @Builder
+    public Member(String userId, String name, Attributable attributable){
+        this.userId = userId;
+        this.name = name;
+        this.attributable = attributable;
+    }
 
 }

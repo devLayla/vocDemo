@@ -2,28 +2,31 @@ package api.demo.controller.web;
 
 import api.demo.domain.Attributable;
 import api.demo.domain.VOC;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
-@Getter
 @NoArgsConstructor
+@Getter
 public class VocSaveDto {
 
+    @NonNull
     private Attributable attributable;
 
     private String content;
 
-    @Builder
-    public VocSaveDto(Attributable attributable, String content){
-        this.attributable = attributable;
-        this.content = content;
-    }
+    private Boolean isClaim;
+
+    private Boolean isCompensate;
+
+    private CompensateSaveDto compensate;
 
     public VOC toEntity(){
         return VOC.builder()
                 .attributable(attributable)
                 .content(content)
+                .isClaim(isClaim)
+                .isCompensate(isCompensate)
                 .build();
     }
 

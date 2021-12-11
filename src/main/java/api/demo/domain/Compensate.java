@@ -30,24 +30,20 @@ public class Compensate {
     @OneToOne(mappedBy = "compensate",cascade = CascadeType.ALL)
     private Penalty penalty;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
     @Builder
-    public Compensate(String content, Long price, VOC voc){
+    public Compensate(String content, Long price, VOC voc, Member member){
         this.content = content;
         this.price = price;
         this.voc = voc;
+        this.member = member;
     }
 
-    public Penalty createPenalty(){
-        Penalty penalty = Penalty.builder()
-                .price(price)
-                .content(content)
-                .compensate(this)
-                .build();
-        this.penalty = penalty;
-        return penalty;
+    public void setVoc(VOC voc){
+        this.voc = voc;
     }
 
-    public Boolean getPenaltyIssued(){
-        return penalty.getIsSign();
-    }
 }

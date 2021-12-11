@@ -1,5 +1,6 @@
 package api.demo.controller.web;
 
+import api.demo.domain.Member;
 import api.demo.domain.Penalty;
 import lombok.Getter;
 

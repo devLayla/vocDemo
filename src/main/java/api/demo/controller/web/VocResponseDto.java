@@ -5,10 +5,8 @@ import lombok.Getter;
 
 @Getter
 public class VocResponseDto {
-
+//단일검색
     private Long id;
-
-    private VocStatus vocStatus;
 
     private Attributable attributable;
 
@@ -16,12 +14,14 @@ public class VocResponseDto {
 
     private Objection objection;
 
+    private Boolean driverSign;
+
     public VocResponseDto(VOC voc){
         this.id = voc.getId();
-        this.vocStatus = voc.getVocStatus();
         this.attributable = voc.getAttributable();
         this.content = voc.getContent();
         this.objection = voc.getObjection();
+        this.driverSign = voc.getDriverSign();
     }
 
 
