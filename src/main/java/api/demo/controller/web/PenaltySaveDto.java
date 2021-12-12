@@ -2,7 +2,6 @@ package api.demo.controller.web;
 
 import api.demo.domain.Compensate;
 import api.demo.domain.Penalty;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

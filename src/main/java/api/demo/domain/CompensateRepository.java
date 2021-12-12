@@ -1,6 +1,5 @@
 package api.demo.domain;
 
-import api.demo.controller.web.CompensateResponseDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

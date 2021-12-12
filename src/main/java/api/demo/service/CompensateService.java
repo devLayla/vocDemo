@@ -1,8 +1,8 @@
 package api.demo.service;
 
-import api.demo.controller.web.CompensateVocListResponseDto;
 import api.demo.controller.web.CompensateResponseDto;
 import api.demo.controller.web.CompensateSaveDto;
+import api.demo.controller.web.CompensateVocListResponseDto;
 import api.demo.domain.Compensate;
 import api.demo.domain.CompensateRepository;
 import api.demo.domain.VOC;

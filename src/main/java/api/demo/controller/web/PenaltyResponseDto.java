@@ -1,9 +1,7 @@
 package api.demo.controller.web;
 
-import api.demo.domain.Member;
 import api.demo.domain.Penalty;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Builder;
 import lombok.Getter;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)

@@ -1,6 +1,8 @@
 package api.demo.controller.web;
 
-import api.demo.domain.*;
+import api.demo.domain.Attributable;
+import api.demo.domain.Objection;
+import api.demo.domain.VOC;
 import lombok.Getter;
 
 import java.util.List;
