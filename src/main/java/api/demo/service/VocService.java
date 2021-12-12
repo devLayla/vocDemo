@@ -25,8 +25,10 @@ public class VocService {
     public Long saveVOC(VocSaveDto createVOCDto){
         VOC save = vocRepository.save(createVOCDto.toEntity());
 
-        if(createVOCDto.getIsCompensate() && createVOCDto.getAttributable() == Attributable.CARRIER)
+        if(createVOCDto.getIsCompensate() && createVOCDto.getAttributable() == Attributable.CARRIER){
+            createVOCDto.getCompensate().setVocId(save.getId());
             compensateService.saveCompensate(createVOCDto.getCompensate());
+        }
 
         return save.getId();
     }

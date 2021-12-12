@@ -45,13 +45,11 @@ public class VOC {
         this.isCompensate = isCompensate;
     }
 
-   public void addCompensate(Compensate compensate){
-        compensateList.add(compensate);
-        compensate.setVoc(this);
-   }
-
     public Boolean getDriverSign(){
         int totalSign = 0;
+
+        if (penaltyList.size() == 0 || penaltyList == null)
+            return false;
 
         for(Penalty penalty : penaltyList){
             if(penalty.getIsSign())
@@ -67,11 +65,6 @@ public class VOC {
         }
         return totalPrice;
     }
-
-
-
-
-
 
 
 }

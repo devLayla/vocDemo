@@ -39,6 +39,7 @@ public class Penalty {
         this.price = price;
         this.content = content;
         this.compensate = compensate;
+        this.voc = compensate.getVoc();
     }
 
     public void signCheck(){

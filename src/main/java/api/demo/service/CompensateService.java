@@ -1,9 +1,8 @@
 package api.demo.service;
 
-import api.demo.controller.web.CompensateListResponseDto;
+import api.demo.controller.web.CompensateVocListResponseDto;
 import api.demo.controller.web.CompensateResponseDto;
 import api.demo.controller.web.CompensateSaveDto;
-import api.demo.controller.web.VocResponseDto;
 import api.demo.domain.Compensate;
 import api.demo.domain.CompensateRepository;
 import api.demo.domain.VOC;
@@ -28,16 +27,15 @@ public class CompensateService {
     public Long saveCompensate(CompensateSaveDto saveDto){
         VOC findVoc = vocRepository.findById(saveDto.getVocId())
                 .orElseThrow(() -> new IllegalArgumentException("해당 voc가 없습니다 = ID : " + saveDto.getVocId()));
-        findVoc.addCompensate(saveDto.toEntity());
         Compensate save = compensateRepository.save(saveDto.toEntity(findVoc));
         return save.getId();
     }
 
-    public CompensateResponseDto findById(Long id){
+    public CompensateVocListResponseDto findById(Long id){
         Compensate findOne = compensateRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 배상정보가 없습니다 = ID : " + id));
 
-        return new CompensateResponseDto(findOne);
+        return new CompensateVocListResponseDto(findOne);
 
     }
 
@@ -47,13 +45,13 @@ public class CompensateService {
                 .collect(Collectors.toList());
     }
 
-    public Map<Long, List<CompensateListResponseDto>> findAllWithVoc(List<Long> vocIds){
-        List<CompensateListResponseDto> collect = compensateRepository.findAllWithVoc(vocIds).stream()
-                .map(CompensateListResponseDto::new)
+    public Map<Long, List<CompensateVocListResponseDto>> findAllWithVoc(List<Long> vocIds){
+        List<CompensateVocListResponseDto> collect = compensateRepository.findAllWithVoc(vocIds).stream()
+                .map(CompensateVocListResponseDto::new)
                 .collect(Collectors.toList());
 
         return collect.stream()
-                .collect(Collectors.groupingBy(CompensateListResponseDto::getId));
+                .collect(Collectors.groupingBy(CompensateVocListResponseDto::getId));
 
     }
 

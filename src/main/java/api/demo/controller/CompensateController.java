@@ -2,6 +2,7 @@ package api.demo.controller;
 
 import api.demo.controller.web.CompensateResponseDto;
 import api.demo.controller.web.CompensateSaveDto;
+import api.demo.controller.web.CompensateVocListResponseDto;
 import api.demo.service.CompensateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class CompensateController {
     }
 
     @GetMapping("/api/compensate/{id}")
-    public CompensateResponseDto findById(@PathVariable Long id){
+    public CompensateVocListResponseDto findById(@PathVariable Long id){
         return compensateService.findById(id);
     }
 

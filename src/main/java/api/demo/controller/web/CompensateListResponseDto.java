@@ -5,22 +5,17 @@ import lombok.Getter;
 
 @Getter
 public class CompensateListResponseDto {
-    //voc, Member 동시 검색
+    //voc리스트에 포함되는 dto
     private Long id;
 
     private String content;
 
     private Long price;
 
-    private VocResponseDto voc;
-
-    private MemberResponseDto member;
-
-    public CompensateListResponseDto(Compensate compensate){
-        id = compensate.getId();
-        content = compensate.getContent();
-        price = compensate.getPrice();
-        voc = new VocResponseDto(compensate.getVoc());
-        member = new MemberResponseDto(compensate.getMember());
+    public CompensateListResponseDto(Compensate compensate) {
+        this.id = compensate.getId();
+        this.content = compensate.getContent();
+        this.price = compensate.getPrice();
     }
+
 }

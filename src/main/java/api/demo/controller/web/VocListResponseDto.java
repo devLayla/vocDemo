@@ -8,20 +8,22 @@ import java.util.stream.Collectors;
 
 @Getter
 public class VocListResponseDto {
-//compensate포함검색
+
     private Long id;
 
     private Attributable attributable;
 
     private String content;
 
-    private boolean driverSign;
+    private boolean driverSign = false;
 
     private Objection objection;
 
     private int totalPrice;
 
-    private List<CompensateResponseDto> compensateList;
+    private List<CompensateListResponseDto> compensateList;
+
+    private List<PenaltyResponseDto> penaltyList;
 
     public VocListResponseDto(VOC voc){
         id = voc.getId();
@@ -31,7 +33,10 @@ public class VocListResponseDto {
         totalPrice = voc.getTotalPrice();
         driverSign = voc.getDriverSign();
         compensateList = voc.getCompensateList().stream()
-                .map(CompensateResponseDto::new)
+                .map(CompensateListResponseDto::new)
+                .collect(Collectors.toList());
+        penaltyList = voc.getPenaltyList().stream()
+                .map(PenaltyResponseDto::new)
                 .collect(Collectors.toList());
     }
 

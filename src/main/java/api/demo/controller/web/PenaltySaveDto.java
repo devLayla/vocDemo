@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @Getter
 public class PenaltySaveDto {
 
-    private Long compensateId;
+    private Long vocId;
 
-    private Long price;
+    private Long compensateId;
 
     private String content;
 
@@ -20,9 +20,13 @@ public class PenaltySaveDto {
         this.compensateId = compensateId;
     }
 
+    public void setVocId(Long vocId){
+        this.vocId = vocId;
+    }
+
     public Penalty toEntity(Compensate compensate){
         return Penalty.builder()
-                .price(price)
+                .price(compensate.getPrice())
                 .content(content)
                 .compensate(compensate)
                 .build();
