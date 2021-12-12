@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 @Getter
 public class VocListResponseDto {
-
+//전체정보 조회
     private Long id;
 
     private Attributable attributable;

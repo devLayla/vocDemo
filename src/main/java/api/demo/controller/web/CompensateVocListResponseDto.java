@@ -7,7 +7,7 @@ import java.util.Optional;
 
 @Getter
 public class CompensateVocListResponseDto {
-//Compensate/단일검색
+//voc-Member정보 함께 검색
     private Long id;
 
     private String content;

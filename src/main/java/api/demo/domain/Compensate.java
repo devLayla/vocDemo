@@ -45,5 +45,4 @@ public class Compensate {
     public void setVoc(VOC voc){
         this.voc = voc;
     }
-
 }

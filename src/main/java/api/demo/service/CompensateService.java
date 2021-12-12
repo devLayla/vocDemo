@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -45,14 +44,5 @@ public class CompensateService {
                 .collect(Collectors.toList());
     }
 
-    public Map<Long, List<CompensateVocListResponseDto>> findAllWithVoc(List<Long> vocIds){
-        List<CompensateVocListResponseDto> collect = compensateRepository.findAllWithVoc(vocIds).stream()
-                .map(CompensateVocListResponseDto::new)
-                .collect(Collectors.toList());
-
-        return collect.stream()
-                .collect(Collectors.groupingBy(CompensateVocListResponseDto::getId));
-
-    }
 
 }
